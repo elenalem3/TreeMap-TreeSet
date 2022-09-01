@@ -15,7 +15,17 @@ public class Main {
         people.add(new Person("Elena", "Alvares Dorado Avgusto Palo River", 28));
         System.out.println(people);
 
-        Collections.sort(people, new PersonsComparator(4));
+        Collections.sort(people, (a, b) ->
+                {
+                    int word1 = a.getSurname().split(" ").length;
+                    int word2 = b.getSurname().split(" ").length;
+
+                    if (word1 > 4 && word2 > 4 || word1 == word2) {
+                        return Integer.compare(a.getAge(), b.getAge());
+                    }
+                    return Integer.compare(word1, word2);
+                }
+        );
         System.out.println(people);
     }
 }
